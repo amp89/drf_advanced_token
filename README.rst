@@ -1,0 +1,1 @@
+https://github.com/amp89/drf_advanced_token/blob/master/README.md

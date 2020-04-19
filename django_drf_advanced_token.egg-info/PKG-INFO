@@ -1,0 +1,12 @@
+Metadata-Version: 1.2
+Name: django-drf-advanced-token
+Version: 2.0.0
+Summary: More advanced features for the Django Rest Framework rest_framework.authtoken app
+Home-page: https://github.com/amp89/drf_advanced_token
+Author: Alex Peterson
+Author-email: contact@alexpeterson.tech
+License: MIT
+Download-URL: https://github.com/amp89/drf_advanced_token/archive/2.0.0.tar.gz
+Description: https://github.com/amp89/drf_advanced_token/blob/master/README.md
+Platform: UNKNOWN
+Requires-Python: >=3.6
