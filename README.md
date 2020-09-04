@@ -1,27 +1,23 @@
 # drf_advanced_token
+More advanced features for the built in Django Rest Framework token authentication system.
 
-**Updates**
-
+#### Updates
 You can now add these settings to the project `settings.py`:
-
-`PREVENT_TOKEN_API_CHANGE = True` to disable the `/logout` endpoint to avoid accidental key deletion
-
-`PREVENT_TOKEN_LOGOUT = True`  to disable the put to change the token, to avoid accidental key changes
+- `PREVENT_TOKEN_API_CHANGE = True` to disable the `/logout` endpoint to avoid accidental key deletion
+- `PREVENT_TOKEN_LOGOUT = True`  to disable the put to change the token, to avoid accidental key changes
 
 
-Installation:
+## Installation
 `pip install --upgrade django-drf-advanced-token`
 
 
-More advanced features for the built in Django Rest Framework token authentication system.
-
-Adds:
+### Adds:
 - request.user set based on token
 - Login route makes a new token for users that have not logged in yet
 - Routes to check the token validity, and change the token
 - Logout route to invalidtate the token on the backend (logs the user out everywhere they are logged in)
 
-To use this, you must be using token auth and (at least) these in your protected views:
+### To use this, you must be using token auth and (at least) these in your protected views:
 - `authentication_classes = [authentication.TokenAuthentication]`
 - `permission_classes = (permissions.IsAuthenticated,)`
 
@@ -33,7 +29,7 @@ Current only tested with:
 - `djangorestframework==3.10.3`
 
 
-What does this do?
+### What does this do?
 
 1. Adds middleware to set request.user based on the rest_framework.authtoken app
 2. Has `/login/` route `POST`: Accepts `{"username":<username here>, "password":<password here>}`, returns `{"token":<token>}`
@@ -42,8 +38,8 @@ What does this do?
 5. Set bearer prefix in `settings.BEARER_PREFIX` (defaults to "Token")
 6. Once it is set up, just use it like normal `rest_framework.authtoken` auth!
 
-Quick start
------------
+## Quick start
+
 
 1. Install `django` and `djangorestframework`, make sure rest_framework and rest_framework.auth_token are in your INSTALLED_APPS
 
