@@ -7,7 +7,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--force',
             action='store_true',
-            help='Understand that this logs out all users',
+            help='WARNING - Understand that this logs out and *PERMANENTLY* DELETES THE TOKENS FOR ALL USERS',
         )
 
     def handle(self, *args, **options):
