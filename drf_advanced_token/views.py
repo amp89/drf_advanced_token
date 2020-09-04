@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 import uuid
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 
 class GetToken(APIView):
     def post(self, request, *args, **kwargs):
@@ -45,18 +46,23 @@ class TokenAuth(APIView):
             return Response(None, 200)
 
     def put(self, request, *args, **kwargs):
-        old_token = Token.objects.get(user=request.user)
-        old_token.delete()
-        token = Token.objects.create(user=request.user, key=f"{str(uuid.uuid4())}{uuid.uuid4()}{uuid.uuid4()}")
-        return Response({"token":token.key}, 200)
-
+        if hasattr(settings,"PREVENT_TOKEN_API_CHANGE") and settings.PREVENT_TOKEN_API_CHANGE == True:
+            return Response(None, 405)
+        else:
+            old_token = Token.objects.get(user=request.user)
+            old_token.delete()
+            token = Token.objects.create(user=request.user, key=f"{str(uuid.uuid4())}")
+            return Response({"token":token.key}, 200)
     
 class Logout(APIView):
     authentication_classes = [authentication.TokenAuthentication]
     permission_classes = (permissions.IsAuthenticated,)
     def get(self, request, *args, **kwargs):
-        token = Token.objects.get(user=request.user)
-        token.delete()
-        return Response(None, 200)
+        if hasattr(settings,"PREVENT_TOKEN_LOGOUT") and settings.PREVENT_TOKEN_LOGOUT == True:
+            return Response(None, 405)
+        else:
+            token = Token.objects.get(user=request.user)
+            token.delete()
+            return Response(None, 200)
 
  

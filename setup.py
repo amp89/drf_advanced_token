@@ -7,9 +7,9 @@ from setuptools import (
 
 setup(
     name='django-drf_advanced_token',
-    version='2.0.0',
+    version='2.0.1',
     url='https://github.com/amp89/drf_advanced_token',
-    download_url="https://github.com/amp89/drf_advanced_token/archive/2.0.0.tar.gz",
+    download_url="https://github.com/amp89/drf_advanced_token/archive/2.0.1.tar.gz",
     license='MIT',
     description='More advanced features for the Django Rest Framework rest_framework.authtoken app',
     long_description=open('README.rst', 'r', encoding='utf-8').read(),
