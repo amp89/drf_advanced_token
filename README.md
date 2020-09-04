@@ -1,8 +1,11 @@
 # drf_advanced_token
 
 **Updates**
+
 You can now add these settings to the project `settings.py`:
+
 `PREVENT_TOKEN_API_CHANGE = True` to disable the `/logout` endpoint to avoid accidental key deletion
+
 `PREVENT_TOKEN_LOGOUT = True`  to disable the put to change the token, to avoid accidental key changes
 
 
