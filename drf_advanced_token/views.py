@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 import uuid
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
+from drf_advanced_token.models import UserAPIKeyLock
 
 class GetToken(APIView):
     def post(self, request, *args, **kwargs):
@@ -49,6 +50,8 @@ class TokenAuth(APIView):
         if hasattr(settings,"PREVENT_TOKEN_API_CHANGE") and settings.PREVENT_TOKEN_API_CHANGE == True:
             return Response(None, 405)
         else:
+            if UserAPIKeyLock.objects.filter(user=request.user).exists():
+                return Response(None, 405)
             old_token = Token.objects.get(user=request.user)
             old_token.delete()
             token = Token.objects.create(user=request.user, key=f"{str(uuid.uuid4())}")

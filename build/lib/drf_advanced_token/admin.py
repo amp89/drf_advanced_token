@@ -1,3 +1,4 @@
 from django.contrib import admin
+from drf_advanced_token.models import UserAPIKeyLock
 
-# Register your models here.
+admin.site.register(UserAPIKeyLock)
